@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">challenge4</string>
+    <string name="note_app">Note App</string>
+    <string name="description">Jot Down anything you want to achieve, today or in the future</string>
+    <string name="login_text">Login</string>
+    <string name="email">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="havent_account">Didn\'t have account?</string>
+    <string name="register">Register</string>
+    <string name="name_full">Full Name</string>
+    <string name="have_account">Already have account?</string>
+</resources>
