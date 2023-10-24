@@ -1,4 +1,4 @@
-package com.example.challenge4.view
+package com.example.challenge4.viewmodel
 
 import android.app.Application
 import android.content.SharedPreferences
