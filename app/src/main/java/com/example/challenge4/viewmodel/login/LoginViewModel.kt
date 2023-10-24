@@ -58,7 +58,4 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
             }
         }
     }
-
-
-
 }

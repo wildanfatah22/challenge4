@@ -8,13 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challenge4.model.local.repository.NoteRepository
 import com.example.challenge4.model.local.room.Note
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+
 
 class MainViewModel(application: Application, sharedPreferences: SharedPreferences) : ViewModel() {
     private val noteRepository: NoteRepository = NoteRepository(application, sharedPreferences)
@@ -36,9 +33,11 @@ class MainViewModel(application: Application, sharedPreferences: SharedPreferenc
     fun insert(note: Note) {
         noteRepository.insert(note)
     }
+
     fun update(note: Note) {
         noteRepository.update(note)
     }
+
     fun delete(note: Note) {
         noteRepository.delete(note)
     }
