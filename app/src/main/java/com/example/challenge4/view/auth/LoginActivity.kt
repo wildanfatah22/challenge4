@@ -16,17 +16,15 @@ import com.example.challenge4.model.local.repository.AuthRepository
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var authRepository: AuthRepository
+    private val viewModel: LoginViewModel by lazy {
+        ViewModelProvider(this, LoginViewModelFactory(authRepository))[LoginViewModel::class.java]
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-
-        val authRepository = AuthRepository() // Gantilah ini sesuai dengan implementasi sebenarnya
-        val factory = LoginViewModelFactory(authRepository)
-        viewModel = ViewModelProvider(this, factory).get(LoginViewModel::class.java)
-
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.view = binding.root
