@@ -2,7 +2,6 @@ package com.example.challenge4.model.local.repository
 
 import android.app.Application
 import android.content.SharedPreferences
-import androidx.lifecycle.LiveData
 import com.example.challenge4.model.local.room.Note
 import com.example.challenge4.model.local.room.NoteDao
 import com.example.challenge4.model.local.room.NoteDb
