@@ -3,16 +3,16 @@ package com.example.challenge4.domain.repository
 import androidx.lifecycle.LiveData
 import com.example.challenge4.domain.model.User
 
-interface AuthRepository{
+interface AuthRepository {
 
-    suspend fun insertUser(user: User)
+    fun insertUser(user: User)
 
-    suspend fun updateUser(user: User)
+    fun updateUser(user: User)
 
-    suspend fun deleteUser(user: User)
+    fun deleteUser(user: User)
 
-    suspend fun getUserById(userId: Int): LiveData<User>
+    fun getUserById(userId: Int): LiveData<User>
 
-    suspend fun getUserByEmailAndPassword(email: String, password: String): LiveData<User?>
+    fun getUserByEmailAndPassword(email: String, password: String): LiveData<User?>
 
 }

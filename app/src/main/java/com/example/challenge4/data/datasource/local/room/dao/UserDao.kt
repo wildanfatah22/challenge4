@@ -1,4 +1,4 @@
-package com.example.challenge4.data.local.room.dao
+package com.example.challenge4.data.datasource.local.room.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -7,18 +7,18 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.challenge4.data.local.room.entity.UserEntity
+import com.example.challenge4.data.datasource.local.room.entity.UserEntity
 
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: UserEntity)
+    fun insertUser(userEntity: UserEntity)
 
     @Update
-    fun updateUser(user: UserEntity)
+    fun updateUser(userEntity: UserEntity)
 
     @Delete
-    fun deleteUser(user: UserEntity)
+    fun deleteUser(userEntity: UserEntity)
 
     @Query("SELECT * FROM user WHERE id = :userId")
     fun getUserById(userId: Int): LiveData<UserEntity>

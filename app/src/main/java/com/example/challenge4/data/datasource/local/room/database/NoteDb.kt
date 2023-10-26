@@ -1,13 +1,13 @@
-package com.example.challenge4.data.local.room.database
+package com.example.challenge4.data.datasource.local.room.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.challenge4.data.local.room.dao.NoteDao
-import com.example.challenge4.data.local.room.dao.UserDao
-import com.example.challenge4.data.local.room.entity.NoteEntity
-import com.example.challenge4.data.local.room.entity.UserEntity
+import com.example.challenge4.data.datasource.local.room.dao.NoteDao
+import com.example.challenge4.data.datasource.local.room.dao.UserDao
+import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
+import com.example.challenge4.data.datasource.local.room.entity.UserEntity
 
 @Database(entities = [NoteEntity::class, UserEntity::class], version = 1)
 abstract class NoteDb : RoomDatabase() {

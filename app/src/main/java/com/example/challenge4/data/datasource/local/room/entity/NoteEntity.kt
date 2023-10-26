@@ -1,4 +1,4 @@
-package com.example.challenge4.data.local.room.entity
+package com.example.challenge4.data.datasource.local.room.entity
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

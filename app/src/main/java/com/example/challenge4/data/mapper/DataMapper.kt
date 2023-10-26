@@ -1,7 +1,7 @@
-package com.example.challenge4.presentation.utils
+package com.example.challenge4.data.mapper
 
-import com.example.challenge4.data.local.room.entity.NoteEntity
-import com.example.challenge4.data.local.room.entity.UserEntity
+import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
+import com.example.challenge4.data.datasource.local.room.entity.UserEntity
 import com.example.challenge4.domain.model.Note
 import com.example.challenge4.domain.model.User
 

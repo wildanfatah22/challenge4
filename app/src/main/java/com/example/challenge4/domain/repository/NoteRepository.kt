@@ -1,11 +1,13 @@
 package com.example.challenge4.domain.repository
 
-import com.example.challenge4.data.local.room.entity.NoteEntity
+import androidx.lifecycle.LiveData
+import com.example.challenge4.domain.model.Note
 
 interface NoteRepository {
-    suspend fun getAllNotes(): List<NoteEntity>
-    suspend fun insertNote(noteEntity: NoteEntity): List<NoteEntity>
-    suspend fun updateNote(noteEntity: NoteEntity): List<NoteEntity>
-    suspend fun deleteNote(noteEntity: NoteEntity): List<NoteEntity>
-    fun clearToken()
+    fun getAllNotes(): LiveData<List<Note>>
+    fun insertNote(note: Note)
+    fun updateNote(note: Note)
+    fun deleteNote(note: Note)
+
+    fun getSelectedNote(id: Int): Note
 }

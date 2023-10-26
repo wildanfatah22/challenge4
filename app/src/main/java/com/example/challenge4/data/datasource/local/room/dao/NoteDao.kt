@@ -1,27 +1,28 @@
-package com.example.challenge4.data.local.room.dao
+package com.example.challenge4.data.datasource.local.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.challenge4.data.local.room.entity.NoteEntity
+import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
 
 @Dao
 interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(noteEntity: NoteEntity)
+    fun insertNote(noteEntity: NoteEntity)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun update(noteEntity: NoteEntity)
+    fun updateNote(noteEntity: NoteEntity)
 
     @Delete
-    suspend fun delete(noteEntity: NoteEntity)
+    fun deleteNote(noteEntity: NoteEntity)
 
     @Query("SELECT * from note ORDER BY id ASC")
-    suspend fun getAllNotes(): List<NoteEntity>
+    fun getAllNotes(): LiveData<List<NoteEntity>>
 
     @Query("SELECT * FROM note WHERE id =:id")
-    suspend fun getSelectedNote(id:Int) : NoteEntity
+    fun getSelectedNote(id: Int): LiveData<NoteEntity>
 }

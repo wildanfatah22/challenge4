@@ -2,7 +2,7 @@ package com.example.challenge4.presentation.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.challenge4.data.local.repository.NoteRepositoryImpl
+import com.example.challenge4.data.repository.NoteRepositoryImpl
 
 class MainViewModelFactory(private val noteRepositoryImpl: NoteRepositoryImpl) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")

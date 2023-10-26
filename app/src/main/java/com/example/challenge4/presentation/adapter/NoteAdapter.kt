@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.challenge4.R
-import com.example.challenge4.data.local.room.entity.NoteEntity
+import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date

@@ -3,8 +3,8 @@ package com.example.challenge4.presentation.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.challenge4.data.local.repository.NoteRepositoryImpl
-import com.example.challenge4.data.local.room.entity.NoteEntity
+import com.example.challenge4.data.repository.NoteRepositoryImpl
+import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
 
 
 class MainViewModel(private val noteRepositoryImpl: NoteRepositoryImpl) : ViewModel() {
