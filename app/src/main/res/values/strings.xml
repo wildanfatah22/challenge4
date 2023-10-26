@@ -15,4 +15,6 @@
     <string name="create_note">Create your first note !</string>
     <string name="vector_image">Vector Image</string>
     <string name="search">Search</string>
+    <string name="enter_note">Enter Note Here</string>
+
 </resources>
