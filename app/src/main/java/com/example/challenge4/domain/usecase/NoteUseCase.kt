@@ -19,7 +19,7 @@ interface NoteUseCase {
 
 }
 
-class NoteInteractor(private val noteRepository: NoteRepository) : NoteUseCase {
+class NoteInteract(private val noteRepository: NoteRepository) : NoteUseCase {
 
     override fun getAllNote() = noteRepository.getAllNotes()
 

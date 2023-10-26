@@ -18,7 +18,7 @@ interface UserUseCase {
 
 }
 
-class UserInteractor(private val authRepository: AuthRepository) : UserUseCase {
+class UserInteract(private val authRepository: AuthRepository) : UserUseCase {
     override fun insertUser(user: User) = authRepository.insertUser(user)
 
     override fun updateUser(user: User) = authRepository.updateUser(user)

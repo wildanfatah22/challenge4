@@ -3,8 +3,6 @@ package com.example.challenge4.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.example.challenge4.data.datasource.local.NoteDbDataSource
-import com.example.challenge4.data.datasource.local.room.dao.NoteDao
-import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
 import com.example.challenge4.data.mapper.DataMapper
 import com.example.challenge4.domain.model.Note
 import com.example.challenge4.domain.repository.NoteRepository

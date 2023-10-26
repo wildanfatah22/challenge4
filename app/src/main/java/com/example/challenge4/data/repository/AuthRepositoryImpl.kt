@@ -3,7 +3,6 @@ package com.example.challenge4.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.example.challenge4.data.datasource.local.UserDbDataSource
-import com.example.challenge4.data.datasource.local.room.dao.UserDao
 import com.example.challenge4.domain.model.User
 import com.example.challenge4.domain.repository.AuthRepository
 import com.example.challenge4.presentation.utils.AppExecutors
