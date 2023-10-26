@@ -1,9 +1,9 @@
 package com.example.challenge4.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.example.challenge4.data.local.room.entity.User
+import com.example.challenge4.domain.model.User
 
-interface LoginRepository{
+interface AuthRepository{
 
     suspend fun insertUser(user: User)
 
@@ -15,5 +15,4 @@ interface LoginRepository{
 
     suspend fun getUserByEmailAndPassword(email: String, password: String): LiveData<User?>
 
-    suspend fun getUserByEmail(email: String): LiveData<User?>
 }

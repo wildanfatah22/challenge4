@@ -3,15 +3,11 @@ package com.example.challenge4.presentation.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.challenge4.data.local.repository.LocalRepository
+import com.example.challenge4.data.local.repository.NoteRepositoryImpl
 import com.example.challenge4.data.local.room.entity.NoteEntity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
-class MainViewModel(private val localRepository: LocalRepository) : ViewModel() {
+class MainViewModel(private val noteRepositoryImpl: NoteRepositoryImpl) : ViewModel() {
 
 
     private val _isLoading = MutableLiveData<Boolean>()

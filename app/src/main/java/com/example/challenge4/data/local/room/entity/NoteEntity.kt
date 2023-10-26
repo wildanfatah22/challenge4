@@ -4,7 +4,6 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.challenge4.data.Note
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "Note")
@@ -32,24 +31,3 @@ data class NoteEntity(
 
 ) : Parcelable
 
-fun NoteEntity.toNote(): Note {
-    return Note(
-        id = this.id,
-        title= this.title,
-        subTitle = this.subTitle,
-        description = this.description,
-        date = this.date,
-        color = this.color
-    )
-}
-
-fun Note.toNoteEntity(): NoteEntity {
-    return NoteEntity(
-        id = this.id,
-        title= this.title,
-        subTitle = this.subTitle,
-        description = this.description,
-        date = this.date,
-        color = this.color
-    )
-}

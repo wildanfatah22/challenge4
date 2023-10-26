@@ -1,15 +1,17 @@
 package com.example.challenge4.presentation.di
 
 import android.content.Context
+import com.example.challenge4.data.local.repository.AuthRepositoryImpl
+import com.example.challenge4.data.local.room.database.NoteDb
+import com.example.challenge4.presentation.utils.AppExecutors
 
 object Injection {
-    private fun provideUserRepository(context: Context): IUserRepository {
-        val database = AppDatabase.getInstance(context)
 
-        val localDataSource = UserDatabaseDataSource.getInstance(database.userDao())
+    fun provideAuthRepository(context: Context) : AuthRepositoryImpl {
+        val database = NoteDb.getDatabase(context)
+        val dao = database.userDao()
         val appExecutors = AppExecutors()
 
-        return UserRepository.getInstance(localDataSource, appExecutors)
+        return AuthRepositoryImpl.getInstance(dao, appExecutors)
     }
-
 }
