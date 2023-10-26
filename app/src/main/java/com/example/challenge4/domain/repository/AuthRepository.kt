@@ -15,4 +15,5 @@ interface AuthRepository {
 
     fun getUserByEmailAndPassword(email: String, password: String): LiveData<User?>
 
+    fun getUserEmail(email: String): LiveData<User?>
 }

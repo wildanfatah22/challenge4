@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
                 saveUserAccountData(email)
                 navigateToMainScreen()
             } else {
-                showError("Email atau password salah")
+                showError("Email or password invalid!")
             }
         }
     }
@@ -72,12 +72,12 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.edtPasswordInput.text.toString()
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.edtEmail.error = "Email tidak valid"
+            binding.edtEmail.error = "Email invalid!"
             return false
         }
 
         if (password.isEmpty()) {
-            binding.edtPassword.error = "Password tidak boleh kosong"
+            binding.edtPassword.error = "Password cannot be empty"
             return false
         }
 

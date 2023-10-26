@@ -36,7 +36,7 @@ object Injection {
 
         return NoteRepositoryImpl.getInstance(dataSource, appExecutors)
     }
-    fun providePlayerUseCase(context: Context): NoteUseCase {
+    fun provideNoteUseCase(context: Context): NoteUseCase {
         val repository = provideNoteRepository(context)
         return NoteInteract(repository)
     }

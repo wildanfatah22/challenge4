@@ -13,27 +13,32 @@ class AuthRepositoryImpl private constructor(
     private val appExecutors: AppExecutors
 ) : AuthRepository {
 
-    override fun insertUser(user: User) {
+    override fun insertUser(user: User) =
         appExecutors.diskIO.execute { userDbDataSource.insertUser(DataMapper.userDomainToUserEntity(user)) }
-    }
 
-    override fun updateUser(user: User) {
+
+    override fun updateUser(user: User) =
         appExecutors.diskIO.execute { userDbDataSource.updateUser(DataMapper.userDomainToUserEntity(user)) }
-    }
 
-    override fun deleteUser(user: User) {
+
+    override fun deleteUser(user: User) =
         appExecutors.diskIO.execute { userDbDataSource.deleteUser(DataMapper.userDomainToUserEntity(user)) }
-    }
 
-    override fun getUserById(userId: Int): LiveData<User> {
-        return userDbDataSource.getUserById(userId).map { DataMapper.userEntityToUserDomain(it) }
-    }
+
+    override fun getUserById(userId: Int): LiveData<User> =
+        userDbDataSource.getUserById(userId).map { DataMapper.userEntityToUserDomain(it) }
+
 
     override fun getUserByEmailAndPassword(
         email: String,
         password: String
     ): LiveData<User?> {
         return userDbDataSource.getUserByEmailAndPassword(email, password)
+            .map { DataMapper.userLoginEntityToUserDomain(it) }
+    }
+
+    override fun getUserEmail(email: String): LiveData<User?> {
+        return userDbDataSource.getUserEmail(email)
             .map { DataMapper.userLoginEntityToUserDomain(it) }
     }
 

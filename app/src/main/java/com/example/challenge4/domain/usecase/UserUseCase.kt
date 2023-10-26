@@ -16,6 +16,7 @@ interface UserUseCase {
 
     fun getUserByEmailAndPassword(email: String, password: String): LiveData<User?>
 
+    fun getUserEmail(email: String) : LiveData<User?>
 }
 
 class UserInteract(private val authRepository: AuthRepository) : UserUseCase {
@@ -27,7 +28,7 @@ class UserInteract(private val authRepository: AuthRepository) : UserUseCase {
 
     override fun getUserById(userId: Int) = authRepository.getUserById(userId)
 
-    override fun getUserByEmailAndPassword(email: String, password: String) =
-        authRepository.getUserByEmailAndPassword(email, password)
+    override fun getUserByEmailAndPassword(email: String, password: String) = authRepository.getUserByEmailAndPassword(email, password)
 
+    override fun getUserEmail(email: String): LiveData<User?> = authRepository.getUserEmail(email)
 }

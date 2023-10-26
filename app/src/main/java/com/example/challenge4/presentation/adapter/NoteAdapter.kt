@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.challenge4.R
 import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
+import com.example.challenge4.domain.model.Note
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -38,6 +39,19 @@ class NoteAdapter: ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(NoteDiffCallb
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+
+    }
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(note: Note)
+        fun onEditClicked(note: Note)
+        fun onDeleteClicked(note: Note)
     }
 
     companion object {
@@ -59,5 +73,4 @@ class NoteAdapter: ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(NoteDiffCallb
             return outputDate
         }
     }
-
 }
