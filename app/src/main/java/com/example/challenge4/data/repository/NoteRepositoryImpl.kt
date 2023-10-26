@@ -28,7 +28,7 @@ class NoteRepositoryImpl private constructor(
         TODO("Not yet implemented")
     }
 
-    override fun getSelectedNote(id: Int): Note {
+    override fun getSelectedNote(id: Int): LiveData<Note> {
         TODO("Not yet implemented")
     }
 
