@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.challenge4.databinding.ActivityEditNoteBinding
@@ -87,8 +88,36 @@ class EditNoteActivity : AppCompatActivity() {
             }
         }
 
+        binding.ivDelete.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
+
         binding.ibtnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Delete Note")
+            .setMessage("Are you sure you want to delete this note?")
+            .setPositiveButton("Yes") { dialog, _ ->
+                deleteNote()
+                dialog.dismiss()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun deleteNote() {
+        val note = intent.getParcelableExtra<Note>(KEY_DATA)
+        if (note != null) {
+            viewModel.deleteNote(note)
+            Toast.makeText(this, "Note deleted successfully", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
