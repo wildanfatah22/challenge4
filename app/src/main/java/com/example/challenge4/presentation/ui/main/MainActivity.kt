@@ -12,6 +12,7 @@ import com.example.challenge4.databinding.ActivityMainBinding
 import com.example.challenge4.domain.model.Note
 import com.example.challenge4.presentation.adapter.NoteAdapter
 import com.example.challenge4.presentation.ui.addnote.AddNoteActivity
+import com.example.challenge4.presentation.ui.editnote.EditNoteActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,8 +43,6 @@ class MainActivity : AppCompatActivity() {
     private fun setUpRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvNote.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
-        binding.rvNote.addItemDecoration(itemDecoration)
     }
 
     private fun btnClicked() {
@@ -62,15 +61,7 @@ class MainActivity : AppCompatActivity() {
 
                 adapter.setOnItemClickCallback(object : NoteAdapter.OnItemClickCallback {
                     override fun onItemClicked(note: Note) {
-//                        navigateToAnotherActivity(note, MainActivity::class.java)
-                    }
-
-                    override fun onEditClicked(note: Note) {
-//                        navigateToAnotherActivity(note, MainActivity::class.java)
-                    }
-
-                    override fun onDeleteClicked(note: Note) {
-                        dialogDelete(note)
+                        startEditNoteActivity(note)
                     }
                 })
             } else {
@@ -79,24 +70,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun dialogDelete(note: Note) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Delete Noter")
-        builder.setMessage("Are you sure you want to delete this note?")
-        builder.setPositiveButton("Yes") { _, _ ->
-            viewModel.deletePlayer(note)
-        }
-        builder.setNegativeButton("No") { dialog, _ ->
-            dialog.cancel()
-        }
-        builder.show()
+    private fun startEditNoteActivity(note : Note) {
+        val intent = Intent(this, EditNoteActivity::class.java)
+        intent.putExtra(EditNoteActivity.KEY_DATA, note)
+        startActivity(intent)
     }
-
-//    private fun navigateToAnotherActivity(note: Note, activity: Class<*>) {
-//        val intent = Intent(this, activity)
-//        intent.putExtra("note", note)
-//        startActivity(intent)
-//    }
 
     private fun visibilityEmptyData(boolean: Boolean) {
         binding.noData.visibility = if (boolean) View.VISIBLE else View.GONE

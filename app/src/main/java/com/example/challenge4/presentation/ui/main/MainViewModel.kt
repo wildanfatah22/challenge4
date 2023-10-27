@@ -13,7 +13,7 @@ class MainViewModel(private val noteUseCase: NoteUseCase) : ViewModel() {
 
     val getAllNote = noteUseCase.getAllNote()
 
-    fun deletePlayer(note: Note) {
+    fun deleteNote(note: Note) {
         noteUseCase.deleteNote(note)
     }
 }
