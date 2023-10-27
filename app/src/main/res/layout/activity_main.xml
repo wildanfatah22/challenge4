@@ -16,7 +16,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/note_app" />
+            app:title="@string/note_app"
+            app:menu="@menu/main_menu"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.search.SearchBar
