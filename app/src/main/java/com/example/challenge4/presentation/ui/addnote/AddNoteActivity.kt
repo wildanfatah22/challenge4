@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.challenge4.databinding.ActivityAddNoteBinding
@@ -52,7 +51,6 @@ class AddNoteActivity : AppCompatActivity() {
             subTitle = binding.edtSubtitle.text.toString(),
             description = binding.edtDescription.text.toString(),
             date = binding.tvDate.text.toString(),
-//            color = binding.playerDescEdit.text.toString(),
         )
 
         viewModel.insertNote(addNote)
@@ -65,8 +63,7 @@ class AddNoteActivity : AppCompatActivity() {
 
     private fun getCurrentDate(): String {
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
-        val currentDate = dateFormat.format(Date())
-        return currentDate
+        return dateFormat.format(Date())
     }
 
     private fun btnClicked() {
@@ -158,5 +155,4 @@ class AddNoteActivity : AppCompatActivity() {
         }
         return true
     }
-
 }

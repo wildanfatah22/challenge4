@@ -2,15 +2,10 @@ package com.example.challenge4.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
 import com.example.challenge4.databinding.NoteItemBinding
 import com.example.challenge4.domain.model.Note
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+
 
 class NoteAdapter(private val note: List<Note>): RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
     class ViewHolder(private val binding: NoteItemBinding) : RecyclerView.ViewHolder(binding.root) {

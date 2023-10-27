@@ -13,7 +13,7 @@ interface NoteDataSource {
 
     fun getAllNote(): LiveData<List<NoteEntity>>
 
-    fun getSelectedNote(playerId: Int): LiveData<NoteEntity>
+    fun getSelectedNote(id: Int): LiveData<NoteEntity>
 }
 
 class NoteDbDataSource(private val noteDao: NoteDao) :

@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle("Delete Noter")
         builder.setMessage("Are you sure you want to delete this note?")
         builder.setPositiveButton("Yes") { _, _ ->
-            viewModel.deletePlayer(note)
+            viewModel.deleteNote(note)
         }
         builder.setNegativeButton("No") { dialog, _ ->
             dialog.cancel()
