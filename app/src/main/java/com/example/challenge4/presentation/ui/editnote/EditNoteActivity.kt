@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.challenge4.databinding.ActivityEditNoteBinding
 import com.example.challenge4.domain.model.Note
-import com.example.challenge4.presentation.ui.BottomSheetNavFragment
 import com.example.challenge4.presentation.ui.main.MainActivity
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -31,6 +31,7 @@ class EditNoteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val note = intent.getParcelableExtra<Note>(KEY_DATA) as Note
+        noteId = intent.getIntExtra(KEY_ID, -1)
 
         val currentDate = getCurrentDate()
         binding.tvDate.text = currentDate
@@ -57,23 +58,23 @@ class EditNoteActivity : AppCompatActivity() {
         return dateFormat.format(Date())
     }
 
-//    private fun editNote() {
-//
-//        val edit = Note(
-//            id = 0,
-//            title = binding.edtTitle.text.toString(),
-//            subTitle = binding.edtSubtitle.text.toString(),
-//            description = binding.edtDescription.text.toString(),
-//            date = binding.tvDate.text.toString(),
-//        )
-//
-//        viewModel.editNote(edit)
-//        Toast.makeText(this, "Data added successfully", Toast.LENGTH_SHORT)
-//            .show()
-//        startActivity(Intent(this, MainActivity::class.java)).apply {
-//            finishAffinity()
-//        }
-//    }
+    private fun editNote() {
+
+        val edit = Note(
+            id = noteId, // Menggunakan noteId yang telah diambil dari intent
+            title = binding.edtTitle.text.toString(),
+            subTitle = binding.edtSubtitle.text.toString(),
+            description = binding.edtDescription.text.toString(),
+            date = binding.tvDate.text.toString(),
+        )
+
+        viewModel.editNote(edit)
+        Toast.makeText(this, "Edit data successfully", Toast.LENGTH_SHORT)
+            .show()
+        startActivity(Intent(this, MainActivity::class.java)).apply {
+            finishAffinity()
+        }
+    }
 
     private fun btnClicked() {
 //        binding.imgMore.setOnClickListener {
@@ -81,14 +82,42 @@ class EditNoteActivity : AppCompatActivity() {
 //            bottomSheetFragment.show(supportFragmentManager, "BottomSheetFragmentTag")
 //        }
 
-//        binding.ivTick.setOnClickListener {
-//            if(validationInput()){
-//                editNote()
-//            }
-//        }
+        binding.ivTick.setOnClickListener {
+            if(validationInput()){
+                editNote()
+            }
+        }
+
+        binding.ivDelete.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
 
         binding.ibtnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Delete Note")
+            .setMessage("Are you sure you want to delete this note?")
+            .setPositiveButton("Yes") { dialog, _ ->
+                deleteNote()
+                dialog.dismiss()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun deleteNote() {
+        val note = intent.getParcelableExtra<Note>(KEY_DATA)
+        if (note != null) {
+            viewModel.deleteNote(note)
+            Toast.makeText(this, "Note deleted successfully", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
@@ -113,6 +142,6 @@ class EditNoteActivity : AppCompatActivity() {
 
     companion object {
         const val KEY_DATA = "Data"
-
+        const val KEY_ID = "id"
     }
 }

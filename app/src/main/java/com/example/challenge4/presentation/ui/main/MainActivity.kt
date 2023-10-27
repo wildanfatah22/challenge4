@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     private fun startEditNoteActivity(note : Note) {
         val intent = Intent(this, EditNoteActivity::class.java)
         intent.putExtra(EditNoteActivity.KEY_DATA, note)
+        intent.putExtra(EditNoteActivity.KEY_ID, note.id)
         startActivity(intent)
     }
 

@@ -9,7 +9,7 @@ class EditNoteViewModel(private val noteUseCase: NoteUseCase) : ViewModel() {
         noteUseCase.updateNote(note)
     }
 
-    fun getSelectedNote(id: Int) {
-        noteUseCase.getSelectedNote(id)
+    fun deleteNote(note: Note) {
+        noteUseCase.deleteNote(note)
     }
 }
