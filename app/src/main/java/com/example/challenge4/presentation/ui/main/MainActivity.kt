@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challenge4.databinding.ActivityMainBinding
 import com.example.challenge4.domain.model.Note
 import com.example.challenge4.presentation.adapter.NoteAdapter
+import com.example.challenge4.presentation.ui.addnote.AddNoteActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         setUpRecyclerView()
+        observeData()
+        btnClicked()
     }
 
     private fun setUpRecyclerView() {
@@ -43,11 +46,18 @@ class MainActivity : AppCompatActivity() {
         binding.rvNote.addItemDecoration(itemDecoration)
     }
 
+    private fun btnClicked() {
+        binding.btnFab.setOnClickListener {
+            val intent = Intent(this, AddNoteActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     private fun observeData() {
         viewModel.getAllNote.observe(this) { note ->
             if (note.isNotEmpty()) {
                 visibilityEmptyData(false)
-                adapter = NoteAdapter()
+                adapter = NoteAdapter(note)
                 binding.rvNote.adapter = adapter
 
                 adapter.setOnItemClickCallback(object : NoteAdapter.OnItemClickCallback {
