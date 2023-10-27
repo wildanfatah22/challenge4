@@ -1,9 +1,6 @@
 package com.example.challenge4.presentation.ui.addnote
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -19,8 +16,8 @@ import java.util.Locale
 
 class AddNoteActivity : AppCompatActivity() {
 
-    private var noteId = -1
-    var selectedColor = "#171C26"
+//    private var noteId = -1
+//    var selectedColor = "#171C26"
 
     private lateinit var binding: ActivityAddNoteBinding
     private val viewModel: AddNoteViewModel by lazy {
@@ -34,7 +31,6 @@ class AddNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        noteId = intent.getIntExtra("noteId", -1)
 
         val currentDate = getCurrentDate()
         binding.tvDate.text = currentDate
@@ -68,8 +64,8 @@ class AddNoteActivity : AppCompatActivity() {
 
     private fun btnClicked() {
         binding.imgMore.setOnClickListener {
-            val bottomSheetFragment = BottomSheetNavFragment.newInstance(noteId)
-            bottomSheetFragment.show(supportFragmentManager, "BottomSheetFragmentTag")
+//            val bottomSheetFragment = BottomSheetNavFragment.newInstance(noteId)
+//            bottomSheetFragment.show(supportFragmentManager, "BottomSheetFragmentTag")
         }
 
         binding.ivTick.setOnClickListener {
@@ -77,65 +73,12 @@ class AddNoteActivity : AppCompatActivity() {
                 addNote()
             }
         }
-    }
 
-    private val BroadcastReceiver : BroadcastReceiver = object : BroadcastReceiver(){
-        override fun onReceive(p0: Context?, p1: Intent?) {
-
-            var actionColor = p1!!.getStringExtra("action")
-
-            when(actionColor!!){
-
-                "Blue" -> {
-                    selectedColor = p1.getStringExtra("selectedColor")!!
-                    binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
-
-                }
-
-                "Yellow" -> {
-                    selectedColor = p1.getStringExtra("selectedColor")!!
-                    binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
-
-                }
-
-
-                "Purple" -> {
-                    selectedColor = p1.getStringExtra("selectedColor")!!
-                    binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
-
-                }
-
-
-                "Green" -> {
-                    selectedColor = p1.getStringExtra("selectedColor")!!
-                    binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
-
-                }
-
-
-                "Orange" -> {
-                    selectedColor = p1.getStringExtra("selectedColor")!!
-                    binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
-
-                }
-
-
-                "Black" -> {
-                    selectedColor = p1.getStringExtra("selectedColor")!!
-                    binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
-
-                }
-
-
-                else -> {
-                    selectedColor = p1.getStringExtra("selectedColor")!!
-                    binding.colorView.setBackgroundColor(Color.parseColor(selectedColor))
-
-                }
-            }
+        binding.ibtnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
-
     }
+
 
     private fun validationInput(): Boolean {
         if (binding.edtTitle.text.isNullOrEmpty()) {

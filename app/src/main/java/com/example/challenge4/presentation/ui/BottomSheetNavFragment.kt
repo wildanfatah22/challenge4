@@ -31,8 +31,6 @@ class BottomSheetNavFragment : BottomSheetDialogFragment() {
 
         setupUIElements()
 
-        binding.layoutDeleteNote.visibility = if (noteId != -1) View.VISIBLE else View.GONE
-
         setupClickListeners()
     }
 
@@ -168,12 +166,6 @@ class BottomSheetNavFragment : BottomSheetDialogFragment() {
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
         }
 
-        binding.layoutDeleteNote.setOnClickListener {
-            val intent = Intent("bottom_sheet_action")
-            intent.putExtra("action","DeleteNote")
-            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-            dismiss()
-        }
 
     }
 

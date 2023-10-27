@@ -1,5 +1,9 @@
 package com.example.challenge4.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Note(
 
     var id: Int,
@@ -8,4 +12,4 @@ data class Note(
     var description: String? = null,
     var date: String? = null,
     var color:String? = null
-)
+) : Parcelable

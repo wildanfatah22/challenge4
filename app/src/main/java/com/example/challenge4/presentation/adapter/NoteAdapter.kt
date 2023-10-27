@@ -29,7 +29,10 @@ class NoteAdapter(private val note: List<Note>): RecyclerView.Adapter<NoteAdapte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = note[position]
         holder.bind(note)
-
+        
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(note)
+        }
     }
 
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -40,8 +43,6 @@ class NoteAdapter(private val note: List<Note>): RecyclerView.Adapter<NoteAdapte
 
     interface OnItemClickCallback {
         fun onItemClicked(note: Note)
-        fun onEditClicked(note: Note)
-        fun onDeleteClicked(note: Note)
     }
 
 }
