@@ -21,13 +21,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setUpViews()
+        val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
+        val userLogin = sharedPreferences.getBoolean("isUserLogin", false)
+        if (userLogin) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finishAffinity()
+        }
 
-    }
-
-    private fun setUpViews() {
-        observeData()
         btnClicked()
+
     }
 
     private fun btnClicked() {
@@ -45,24 +48,24 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeData() {
-        val sharedPref = getSharedPreferences("user", MODE_PRIVATE)
-        val userLogin = sharedPref.getBoolean("user", false)
-
-        if (userLogin) {
-            navigateToMainScreen()
-        }
-    }
 
     private fun validateAccount(email: String, password: String) {
 
         viewModel.getUser(email, password).observe(this) { user ->
             if (user != null) {
-                saveUserLoginState()
-                saveUserAccountData(email)
+                val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putBoolean("isUserLogin", true)
+                editor.apply()
+
+                val accountData = getSharedPreferences("userAccount", MODE_PRIVATE)
+                val accountEdit = accountData.edit()
+                accountEdit.putString("email", email)
+                accountEdit.apply()
+
                 navigateToMainScreen()
             } else {
-                showError("Email or password invalid!")
+                Toast.makeText(this, "Email atau password salah", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -84,19 +87,6 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
 
-    private fun saveUserLoginState() {
-        val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("isUserLogin", true)
-        editor.apply()
-    }
-
-    private fun saveUserAccountData(email: String) {
-        val accountData = getSharedPreferences("userAccount", MODE_PRIVATE)
-        val accountEdit = accountData.edit()
-        accountEdit.putString("email", email)
-        accountEdit.apply()
-    }
 
     private fun navigateToMainScreen() {
         val intent = Intent(this, MainActivity::class.java)
