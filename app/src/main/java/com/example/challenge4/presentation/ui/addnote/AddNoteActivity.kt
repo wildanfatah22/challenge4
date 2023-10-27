@@ -13,6 +13,9 @@ import com.example.challenge4.databinding.ActivityAddNoteBinding
 import com.example.challenge4.domain.model.Note
 import com.example.challenge4.presentation.ui.BottomSheetNavFragment
 import com.example.challenge4.presentation.ui.main.MainActivity
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class AddNoteActivity : AppCompatActivity() {
@@ -33,6 +36,9 @@ class AddNoteActivity : AppCompatActivity() {
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         noteId = intent.getIntExtra("noteId", -1)
+
+        val currentDate = getCurrentDate()
+        binding.tvDate.text = currentDate
 
         btnClicked()
 
@@ -55,6 +61,12 @@ class AddNoteActivity : AppCompatActivity() {
         startActivity(Intent(this, MainActivity::class.java)).apply {
             finishAffinity()
         }
+    }
+
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        val currentDate = dateFormat.format(Date())
+        return currentDate
     }
 
     private fun btnClicked() {
@@ -133,6 +145,7 @@ class AddNoteActivity : AppCompatActivity() {
             binding.edtTitle.error = "Title Cannot be Empty"
             return false
         }
+
         if (binding.edtSubtitle.text.isNullOrEmpty()) {
             binding.edtSubtitle.error = "Subtitle Cannot be Empty"
             return false

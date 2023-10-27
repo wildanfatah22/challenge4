@@ -42,8 +42,6 @@ class MainActivity : AppCompatActivity() {
     private fun setUpRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvNote.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
-        binding.rvNote.addItemDecoration(itemDecoration)
     }
 
     private fun btnClicked() {

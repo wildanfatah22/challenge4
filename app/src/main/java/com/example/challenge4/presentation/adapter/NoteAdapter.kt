@@ -19,7 +19,7 @@ class NoteAdapter(private val note: List<Note>): RecyclerView.Adapter<NoteAdapte
             val tvDesc = binding.tvDesc
             val tvDate = binding.tvDate
             tvTitle.text = note.title
-            tvDate.text = formatDateToString(note.date.toString())
+            tvDate.text = note.date
             tvDesc.text = note.description
         }
     }
@@ -49,23 +49,4 @@ class NoteAdapter(private val note: List<Note>): RecyclerView.Adapter<NoteAdapte
         fun onDeleteClicked(note: Note)
     }
 
-    companion object {
-        @JvmStatic
-        fun formatDateToString(dateString: String): String {
-            val inputDateFormat =
-                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-            val outputDateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
-            val date: Date?
-            var outputDate = ""
-
-            try {
-                date = inputDateFormat.parse(dateString)
-                outputDate = outputDateFormat.format(date!!)
-            } catch (e: ParseException) {
-                e.printStackTrace()
-            }
-
-            return outputDate
-        }
-    }
 }
