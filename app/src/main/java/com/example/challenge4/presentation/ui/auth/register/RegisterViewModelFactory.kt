@@ -1,4 +1,4 @@
-package com.example.challenge4.presentation.ui.auth.login
+package com.example.challenge4.presentation.ui.auth.register
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -6,22 +6,22 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.challenge4.domain.usecase.UserUseCase
 import com.example.challenge4.presentation.di.Injection
 
-class LoginViewModelFactory(private val userUseCase: UserUseCase) : ViewModelProvider.Factory {
+class RegisterViewModelFactory(private val userUseCase: UserUseCase) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return LoginViewModel(userUseCase) as T
+            return RegisterViewModel(userUseCase) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 
     companion object {
         @Volatile
-        private var instance: LoginViewModelFactory? = null
+        private var instance: RegisterViewModelFactory? = null
 
-        fun getInstance(context: Context): LoginViewModelFactory =
+        fun getInstance(context: Context): RegisterViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: LoginViewModelFactory(
+                instance ?: RegisterViewModelFactory(
                     Injection.provideUserUseCase(context)
                 )
             }

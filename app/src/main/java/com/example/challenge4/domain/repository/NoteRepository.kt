@@ -8,6 +8,5 @@ interface NoteRepository {
     fun insertNote(note: Note)
     fun updateNote(note: Note)
     fun deleteNote(note: Note)
-
-    fun getSelectedNote(id: Int): Note
+    fun getSelectedNote(id: Int): LiveData<Note>
 }

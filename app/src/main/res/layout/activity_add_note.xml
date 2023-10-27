@@ -40,10 +40,21 @@
         android:textSize="24sp"
         android:fontFamily="@font/urbanist_bold"
         android:layout_margin="16dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ibtn_back" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edt_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="12sp"
+        android:fontFamily="@font/urbanist_bold"
+        android:layout_margin="16dp"
+        tools:text="23 Oktober 2023"
+        />
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -53,7 +64,7 @@
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edt_title">
+        app:layout_constraintTop_toBottomOf="@id/tv_date">
         <View
             android:id="@+id/color_view"
             android:layout_width="5dp"
@@ -92,6 +103,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linear_layout" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/imgMore"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/img_bar" />
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

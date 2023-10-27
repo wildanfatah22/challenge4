@@ -14,6 +14,8 @@ interface UserDataSource {
     fun getUserById(userId: Int): LiveData<UserEntity>
 
     fun getUserByEmailAndPassword(email: String, password: String): LiveData<UserEntity?>
+
+    fun getUserEmail(email: String): LiveData<UserEntity?>
 }
 
 class UserDbDataSource(private val userDao: UserDao) : UserDataSource {
@@ -27,24 +29,20 @@ class UserDbDataSource(private val userDao: UserDao) : UserDataSource {
             }
     }
 
-    override fun insertUser(userEntity: UserEntity) {
-        userDao.insertUser(userEntity)
-    }
+    override fun insertUser(userEntity: UserEntity) = userDao.insertUser(userEntity)
 
-    override fun updateUser(userEntity: UserEntity) {
-        userDao.updateUser(userEntity)
-    }
+    override fun updateUser(userEntity: UserEntity) = userDao.updateUser(userEntity)
 
-    override fun deleteUser(userEntity: UserEntity) {
-        userDao.deleteUser(userEntity)
-    }
+    override fun deleteUser(userEntity: UserEntity) = userDao.deleteUser(userEntity)
 
-    override fun getUserById(userId: Int): LiveData<UserEntity> {
-        return userDao.getUserById(userId)
-    }
+    override fun getUserById(userId: Int): LiveData<UserEntity> =
+        userDao.getUserById(userId)
 
-    override fun getUserByEmailAndPassword(email: String, password: String): LiveData<UserEntity?> {
-        return userDao.getUserByEmailAndPassword(email, password)
-    }
+    override fun getUserByEmailAndPassword(email: String, password: String): LiveData<UserEntity?> =
+        userDao.getUserByEmailAndPassword(email, password)
+
+    override fun getUserEmail(email: String): LiveData<UserEntity?> =
+        userDao.getUserEmail(email)
+
 
 }

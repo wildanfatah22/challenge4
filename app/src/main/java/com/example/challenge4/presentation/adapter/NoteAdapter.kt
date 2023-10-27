@@ -1,43 +1,52 @@
 package com.example.challenge4.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.challenge4.R
 import com.example.challenge4.data.datasource.local.room.entity.NoteEntity
+import com.example.challenge4.databinding.NoteItemBinding
+import com.example.challenge4.domain.model.Note
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class NoteAdapter: ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(NoteDiffCallback()) {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(noteEntity : NoteEntity) {
-            val tvTitle = itemView.findViewById<TextView>(R.id.tv_title)
-            val tvDesc = itemView.findViewById<TextView>(R.id.tv_desc)
-            val tvDate = itemView.findViewById<TextView>(R.id.tv_date)
-            tvTitle.text = noteEntity.title
-            tvDate.text = formatDateToString(noteEntity.date.toString())
-            tvDesc.text = noteEntity.description
+class NoteAdapter(private val note: List<Note>): RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
+    class ViewHolder(private val binding: NoteItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(note: Note) {
+            val tvTitle = binding.tvTitle
+            val tvDesc = binding.tvDesc
+            val tvDate = binding.tvDate
+            tvTitle.text = note.title
+            tvDate.text = formatDateToString(note.date.toString())
+            tvDesc.text = note.description
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            view = LayoutInflater.from(parent.context).inflate(
-                R.layout.note_item,
-                parent,
-                false,
-            )
-        )
+        val binding = NoteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
+    override fun getItemCount(): Int = note.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val note = note[position]
+        holder.bind(note)
+
+    }
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(note: Note)
+        fun onEditClicked(note: Note)
+        fun onDeleteClicked(note: Note)
     }
 
     companion object {
@@ -59,5 +68,4 @@ class NoteAdapter: ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(NoteDiffCallb
             return outputDate
         }
     }
-
 }
